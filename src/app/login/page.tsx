@@ -34,7 +34,6 @@ export default function LoginPage() {
             />
           </div>
 
-          
           <button
             type="submit"
             className="w-full bg-green-700 text-white p-3 rounded-lg font-semibold hover:bg-green-800 transition"
@@ -42,11 +41,7 @@ export default function LoginPage() {
             Login
           </button>
         </form>
-
-       
         <div className="my-4 border-t border-green-400"></div>
-
-        
         <p className="text-center text-black mt-2">
           Don't have an account?{" "}
           <a href="/signup" className="font-medium underline hover:text-green-900">
