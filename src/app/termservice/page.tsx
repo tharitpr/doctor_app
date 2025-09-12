@@ -42,6 +42,18 @@ export default function TermServicePage() {
           </li>
         </ol>
       </div>
+      <div className="w-full max-w-3xl bg-green-700 p-6 rounded-2xl shadow-md mt-6">
+        <p className="text-white text-center text-xl font-bold">
+        <a  href="/landing_page">  
+          การใช้แอปฯ ถือว่าคุณยอมรับข้อกำหนดและเงื่อนไขนี้
+        </a>
+        </p>      
+      </div>
+      <div className="w-full max-w-3xl bg-red-600 p-6 rounded-2xl shadow-md mt-6">
+        <p className="text-white text-center text-xl font-bold">
+          หากคุณไม่ยอมรับเงื่อนไขนี้ กรุณาอย่าใช้แอปฯ
+        </p>      
+      </div>
     </div>
   );
 }

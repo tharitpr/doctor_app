@@ -7,10 +7,10 @@ export default function LandingPage() {
   return (
     <div className="bg-white min-h-screen p-4">
 
-      <nav className="bg-[#AFFFD5] text-black p-4 flex justify-between rounded-2xl">
-        <h1 className="text-xl font-bold">Landing Page</h1>
-        <div>ชื่อ ____ นามสกุล ____</div>
+      <nav className="bg-[#AFFFD5] text-black p-4 flex justify-end rounded-2xl">
+          <div className="mr-4">ชื่อ ____ นามสกุล ____</div>
       </nav>
+
 
       <div className="my-6 text-gray-700">
         <p className="text-black text-lg font-semibold mb-4">เมนู</p>
@@ -28,7 +28,7 @@ export default function LandingPage() {
           ประวัติการสั่งยา
         </div>
         <div className="bg-[#AFFFD5] text-black p-6 rounded-3xl text-center shadow-md cursor-pointer hover:scale-105 transition-transform">
-          Profile
+          เช็คสิทธ์รักษา
         </div>
       </div>
 
