@@ -18,10 +18,10 @@ export default function SignupPage() {
         <form className="space-y-4" onSubmit={handleSubmit}>
           
           <div>
-            <label htmlFor="name" className="block text-black font-medium mb-1">Name</label>
+            <label htmlFor="name" className="block text-black font-medium mb-1">Firstname</label>
             <input
               type="text"
-              id="name"
+              id="first_name"
               placeholder="Name"
               className="w-full p-3 border border-gray-300 rounded-lg bg-white placeholder-gray-500 text-black focus:outline-none focus:ring-2 focus:ring-green-400"
             />
@@ -29,22 +29,41 @@ export default function SignupPage() {
 
           
           <div>
-            <label htmlFor="surname" className="block text-black font-medium mb-1">Surname</label>
+            <label htmlFor="surname" className="block text-black font-medium mb-1">Lastname</label>
             <input
               type="text"
-              id="surname"
-              placeholder="Surname"
+              id="sur_name"
+              placeholder="Last name"
               className="w-full p-3 border border-gray-300 rounded-lg bg-white placeholder-gray-500 text-black focus:outline-none focus:ring-2 focus:ring-green-400"
             />
           </div>
 
-          
+          <div>
+            <label htmlFor="name" className="block text-black font-medium mb-1">Gender</label>
+            <input
+              type="text"
+              id="gender"
+              placeholder="male/female"
+              className="w-full p-3 border border-gray-300 rounded-lg bg-white placeholder-gray-500 text-black focus:outline-none focus:ring-2 focus:ring-green-400"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="surname" className="block text-black font-medium mb-1">Hospital ID</label>
+            <input
+              type="text"
+              id="hospital_id"
+              placeholder="ID"
+              className="w-full p-3 border border-gray-300 rounded-lg bg-white placeholder-gray-500 text-black focus:outline-none focus:ring-2 focus:ring-green-400"
+            />
+          </div>
+
           <div>
             <label htmlFor="idNumber" className="block text-black font-medium mb-1">Identification Number</label>
             <input
               type="text"
-              id="idNumber"
-              placeholder="Number"
+              id="id_card_number"
+              placeholder="ID Number"
               className="w-full p-3 border border-gray-300 rounded-lg bg-white placeholder-gray-500 text-black focus:outline-none focus:ring-2 focus:ring-green-400"
             />
           </div>
@@ -60,7 +79,16 @@ export default function SignupPage() {
             />
           </div>
 
-          
+          <div>
+            <label htmlFor="phoneNumber" className="block text-black font-medium mb-1">Emergency Number</label>
+            <input
+              type="tel"
+              id="emergency_number"
+              placeholder="Number"
+              className="w-full p-3 border border-gray-300 rounded-lg bg-white placeholder-gray-500 text-black focus:outline-none focus:ring-2 focus:ring-green-400"
+            />
+          </div>
+
           <div>
             <label htmlFor="address" className="block text-black font-medium mb-1">Address</label>
             <input
@@ -71,6 +99,25 @@ export default function SignupPage() {
             />
           </div>
 
+          <div>
+            <label htmlFor="surname" className="block text-black font-medium mb-1">Allergies</label>
+            <input
+              type="text"
+              id="allergies"
+              placeholder="Allergies"
+              className="w-full p-3 border border-gray-300 rounded-lg bg-white placeholder-gray-500 text-black focus:outline-none focus:ring-2 focus:ring-green-400"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="surname" className="block text-black font-medium mb-1">Blood Type</label>
+            <input
+              type="text"
+              id="blood_type"
+              placeholder="A, B, AB, O"
+              className="w-full p-3 border border-gray-300 rounded-lg bg-white placeholder-gray-500 text-black focus:outline-none focus:ring-2 focus:ring-green-400"
+            />
+          </div>
           
           <div className="space-y-2 mt-4">
             <label className="flex items-center space-x-2">
