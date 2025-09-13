@@ -4,21 +4,45 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface Profile {
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
 }
 
 export default function LandingPage() {
   const router = useRouter();
   const [profile, setProfile] = useState<Profile | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/profile")
-      .then((res) => res.json())
-      .then((data) => setProfile(data))
-      .catch((err) => console.error("Error fetching profile:", err));
-  }, []);
+    const fetchProfile = async () => {
+      const token = localStorage.getItem("access_token"); 
+      if (!token) {
+        router.push("/login"); 
+        return;
+      }
 
+      try {
+        const res = await fetch("http://localhost:8000/api/user/v1/patient/me", {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        });
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch profile");
+        }
+
+        const data = await res.json();
+        setProfile(data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, [router]);
   return (
     <div className="bg-white min-h-screen p-4">
 
@@ -29,7 +53,7 @@ export default function LandingPage() {
             onClick={() => router.push("/profile")}
           >
             <span className="font-bold">
-              {profile.firstName} {profile.lastName}
+              {profile.first_name} {profile.last_name}
             </span>
             <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-xl">
               👤

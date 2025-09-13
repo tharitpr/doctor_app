@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface Profile {
   firstName: string;
@@ -15,27 +16,87 @@ interface Profile {
 }
 
 export default function ProfilePage() {
+  const router = useRouter();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    // 👇 เปลี่ยน URL API ตรงนี้ให้เป็น API จริงของคุณ
-    fetch("/api/profile")
-      .then((res) => res.json())
-      .then((data) => {
-        setProfile(data);
-        setLoading(false);
-      })
-      .catch((err) => {
+    const fetchProfile = async () => {
+      const token = localStorage.getItem("access_token");
+      if (!token) {
+        router.push("/login");
+        return;
+      }
+
+      try {
+        const res = await fetch("http://localhost:8000/api/user/v1/patient/me", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+        });
+
+        const data = await res.json();
+
+        if (res.status === 401) {
+          router.push("/login"); 
+          return;
+        }
+
+        if (!res.ok) {
+          throw new Error(data.error || "Failed to get profile");
+        }
+
+
+        const profileData: Profile = {
+          firstName: data.first_name,
+          lastName: data.last_name,
+          gender: data.gender,
+          phone: data.phone_number,
+          birthDate: data.birth_date,
+          bloodType: data.blood_type,
+          citizenId: data.id_card_number,
+          hospitalId: data.hospital_id,
+          age: calculateAge(data.birth_date),
+        };
+
+        setProfile(profileData);
+      } catch (err: any) {
         console.error("Error fetching profile:", err);
+        setError(err.message);
+      } finally {
         setLoading(false);
-      });
-  }, []);
+      }
+    };
+
+    fetchProfile();
+  }, [router]);
+
+  const calculateAge = (birthDate: string) => {
+    const birth = new Date(birthDate);
+    const today = new Date();
+    let age = today.getFullYear() - birth.getFullYear();
+    const m = today.getMonth() - birth.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
+      age--;
+    }
+    return age;
+  };
 
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
         <p className="text-gray-500">กำลังโหลดข้อมูล...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <p className="text-red-500">{error}</p>
       </div>
     );
   }
@@ -50,7 +111,7 @@ export default function ProfilePage() {
 
   return (
     <div className="min-h-screen bg-gray-100 p-4">
-      {/* Header */}
+
       <div className="bg-green-500 text-white rounded-2xl p-6 shadow-md">
         <div className="flex flex-col items-center">
           <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center text-gray-400 text-4xl">
@@ -73,7 +134,7 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      {/* Personal Info */}
+
       <div className="bg-white mt-6 p-6 rounded-2xl shadow-md">
         <h2 className="text-lg font-semibold mb-4 text-green-600">
           ข้อมูลส่วนตัว
