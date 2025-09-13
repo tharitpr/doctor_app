@@ -24,12 +24,12 @@ export default function LoginPage() {
           
           <div>
             <label htmlFor="phoneNumber" className="block text-black font-medium mb-1">
-              Phone Number
+              Hospital Password
             </label>
             <input
-              type="tel"
-              id="phoneNumber"
-              placeholder="Enter Phone Number"
+              type="string"
+              id="password"
+              placeholder="Password"
               className="w-full p-3 border border-gray-300 rounded-lg bg-white placeholder-gray-500 text-black focus:outline-none focus:ring-2 focus:ring-green-400"
             />
           </div>

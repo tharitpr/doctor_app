@@ -1,13 +1,29 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react"; 
+
 export default function TermServicePage() {
+  const router = useRouter();
+
   return (
     <div className="min-h-screen bg-white flex flex-col items-center py-8 px-4">
-      <div className="w-full max-w-3xl bg-[#AFFFD5] p-6 rounded-2xl shadow-md mb-6">
-        <h1 className="text-2xl font-bold text-black text-center">ข้อกำหนดและเงื่อนไขการใช้บริการ</h1>
-      </div>
 
-    
+      <nav className="w-full max-w-3xl bg-[#AFFFD5] p-4 rounded-2xl shadow-md flex items-center mb-6">
+        <button
+          onClick={() => router.push("/welcome")}
+          className="flex items-center text-black hover:scale-105 transition-transform"
+        >
+          <ArrowLeft className="w-6 h-6 mr-2" />
+        </button>
+
+
+        <h1 className="flex-1 text-center text-2xl font-bold text-black">
+          ข้อกำหนดและเงื่อนไขการใช้บริการ
+        </h1>
+      </nav>
+
+
       <div className="w-full max-w-3xl bg-[#AFFFD5] p-6 rounded-2xl shadow-md overflow-auto">
         <p className="text-black mb-4">
           [ชื่อแอปพลิเคชัน] (“แอปฯ”) ให้บริการนัดหมายแพทย์และสั่งยาผ่านร้านขายยาที่ได้รับอนุญาต
@@ -41,17 +57,21 @@ export default function TermServicePage() {
           </li>
         </ol>
       </div>
+
+
       <div className="w-full max-w-3xl bg-green-700 p-6 rounded-2xl shadow-md mt-6 cursor-pointer hover:scale-105 transition-transform">
         <p className="text-white text-center text-xl font-bold">
-        <a  href="/landing_page">  
-          การใช้แอปฯ ถือว่าคุณยอมรับข้อกำหนดและเงื่อนไขนี้
-        </a>
-        </p>      
+          <a href="/landing_page">
+            การใช้แอปฯ ถือว่าคุณยอมรับข้อกำหนดและเงื่อนไขนี้
+          </a>
+        </p>
       </div>
+
+
       <div className="w-full max-w-3xl bg-red-600 p-6 rounded-2xl shadow-md mt-6 cursor-pointer hover:scale-105 transition-transform">
         <p className="text-white text-center text-xl font-bold">
           หากคุณไม่ยอมรับเงื่อนไขนี้ กรุณาอย่าใช้แอปฯ
-        </p>      
+        </p>
       </div>
     </div>
   );
